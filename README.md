@@ -15,12 +15,16 @@ Initialy when a user navigates to the website they are greeted by their wall but
 
 On the sign up page they simply need to type in a username. Users are specific to their browser. This is due to the overall localized design. As the majority of the required information is stored in the browser rather than a database. Upon signing up the frontend creates a private/public key pair informs the backend off the user's name, unique id, and public key. Additionaly the private key and related information is saved in the users browser. 
 
+<div style="page-break-after: always;"></div>
+
 ![](id.png)
 
 Upon signing up you are navigated to the home page and in the topright side of the page is the users name and id. This id is key as it allows other users to add you to their group. 
 
 ![](groups.png)
 At the group page you can add new users to your group and remove users from your group. Additionaly you start as part of your group. If you do not want to see your own posts you could remove yourself from your group with your id. 
+
+<div style="page-break-after: always;"></div>
 
 ![](firstpost.png)
 
@@ -29,6 +33,8 @@ Upon posting you wall is filled with the new post. If others have added you to t
 ![](twopoeple.png)
 
 In this image you see that liam, right, has recieved bob's, left, message. This is due to the fact that bob added liam to his group.
+
+<div style="page-break-after: always;"></div>
 
 ![](liam.png)
 As you can see liam is a member of bobs group.
@@ -52,9 +58,31 @@ In the backend it stores its own private and public keys. It also stores list of
 
 On the other end users store their private and public keys along with the servers public key in the browsers local storage. 
 
+<div style="page-break-after: always;"></div>
+
 ### Sending Posts/Encryption
 
 As I mentioned above I used private and public keys to implement the encryption. For the libraries used I used JSEncrypt. Which not only generates the keys on the front and backend but also is used to do the encrypting and decrypting.
+
+```js
+async function getKeys(){
+    crypt = new JSEncrypt({default_key_size: 2056})
+    return  {pub: await crypt.getPublicKey(), priv: await crypt.getPrivateKey()}
+}
+
+async function encrypt(key, message){
+    crypt = new JSEncrypt({default_key_size: 2056})
+    crypt.setKey(key)
+    return crypt.encrypt(message)
+}
+
+
+function decrypt(key, message){
+    crypt = new JSEncrypt({default_key_size: 2056})
+    crypt.setKey(key)
+    return crypt.decrypt(message)
+}
+```
 
 As for the implementation when a post is recieved by the backend it sorts through the users group membership. Placing a copy of the encrypted message in in each users posts queue. 
 
@@ -112,7 +140,15 @@ As these logs show liam sends a message which then is stored in liams groupmembe
 ### Database
 For the backend there is no database. The backend simply contains a list of all users, group membership, and caches posts before they are sent to the end users. As soon as posts are passed to the end user they are deleted. As such the users store the posts they recieve localy.
 
-<div style="page-break-after: always;"></div>
+On the fronend side everything is stored in the bowsers local storage. Saving their posts and relevent user information.
+```
+Storage
+​
+advTelecomUser: "{\"uuid\":1586895383973,\"name\":\"Liam\",\"keys\":{\"pub\":\"-----BEGIN PUBLIC KEY----------END PUBLIC KEY-----\",\"priv\":\"-----BEGIN RSA PRIVATE KEY----------END RSA PRIVATE KEY-----\"},\"sKey\":\"-----BEGIN PUBLIC KEY----------END PUBLIC KEY-----\"}"
+posts: "{\"-1586894189070\":{\"message\":\"Hey there this is my first post\",\"name\":\"Liam\"},\"-1586894241888\":{\"message\":\"Added definity not liam\",\"name\":\"Liam\"},\"-1586894279526\":{\"message\":\"Added liam\",\"name\":\"NotLiam\"},\"-1586894320242\":{\"message\":\"Removed not liam\",\"name\":\"Liam\"},\"-1586895391765\":{\"message\":\"Hiya\",\"name\":\"Liam\"}}"
+```
+
+As you can see the local storage stores all require info related to that user. If I had more time one small improvemnt here would be to store all of the messages after reencrypting them with the users public key. However as they are stored localy I am not sure how much this effects the security of messages.
 
 
 ### Apendix
