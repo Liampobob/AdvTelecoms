@@ -106,9 +106,6 @@ router.post('/post', async (req, res) => {
 		let uname = req.body.name;
 		let message = req.body.message;
 		console.log(message)
-
-		message = await decrypt(privateKey, message)
-		console.log(message)
 		for (var key in users[uname]["group"]) {
 			// check if the property/key is defined in the object itself, not in parent
 			if (users[uname]["group"].hasOwnProperty(key)) {           
@@ -132,8 +129,9 @@ router.get('/post', async (req, res) => {
 
 		for (var key in users[uname]["posts"]) {
 			// check if the property/key is defined in the object itself, not in parent
-			if (users[uname]["posts"].hasOwnProperty(key)) {           
-				resp[key] = await encrypt(users[uname].key, users[uname]["posts"][key])
+			if (users[uname]["posts"].hasOwnProperty(key)) {   
+				let message = await decrypt(privateKey, users[uname]["posts"][key])        
+				resp[key] = await encrypt(users[uname].key, message)
 			}
 		}
 		
