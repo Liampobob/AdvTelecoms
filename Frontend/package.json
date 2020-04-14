@@ -1,0 +1,16 @@
+{
+  "name": "adv_telecoms_social_platform",
+  "version": "1.0.0",
+  "description": "Social Platform for Advanced Telecoms",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Liam Sherlock",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "express": "^4.17.1",
+    "stream-to-string": "^1.2.0"
+  }
+}

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Groups!</title>
+<link rel="stylesheet" href="./login.css" />
+<script async src="./home.js"></script>
+ <!-- Navigation -->
+ <nav id="loginnav" class="w3-bar-login w3-black">
+</nav> 
+ <nav class="w3-bar w3-black">
+  <a href="./home.html" class="w3-button w3-bar-item">Home</a>
+  <a href="./groups.html" class="w3-button w3-bar-item">Groups</a>
+</nav> 
+
+<form action="">
+  <h1>Groups</h1>
+  <div class="container">
+    <label for="uuid"><b>Member ID</b></label>
+    <input type="text" placeholder="Enter Members ID" name="uuid" required>
+    <button onclick="addUser(this.form)" type="button">Add Member</button>
+    <button onclick="removeUser(this.form)" type="button">Remove Member</button>
+  </div>
+
+  <h2>Members of My Groups</h2>
+  <div id="members">
+    <script>getUsers()</script>
+  </div>
+</form> 
+
+
+</html>

@@ -1,0 +1,24 @@
+body {
+    text-align: left;
+    background-color: #ffffff;
+  }
+
+  .name {
+    text-align: right;
+  }
+
+.w3-black,.w3-hover-black:hover{color:#fff!important;background-color:#00b7ff!important}
+.w3-bar{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
+.w3-bar .w3-bar-item{padding:8px 16px;float:left;background-color:inherit;color:inherit;width:auto;border:none;outline:none;display:block}
+.w3-bar .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
+.w3-bar .w3-button{background-color:inherit;color:inherit;white-space:normal}
+
+.w3-bar-login{width:100%;overflow:hidden}.w3-center .w3-bar{display:inline-block;width:auto}
+.w3-bar-login .w3-bar-item{padding:8px 16px;float:right;background-color:inherit;color:inherit;width:auto;border:none;outline:none;display:block}
+.w3-bar-login .w3-dropdown-hover,.w3-bar .w3-dropdown-click{position:static;float:left}
+.w3-bar-login .w3-button{background-color:inherit;color:inherit;white-space:normal}
+
+  /* Add padding to containers */
+  .container {
+    padding: 16px;
+  }

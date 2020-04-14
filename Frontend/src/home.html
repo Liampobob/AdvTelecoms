@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My webpage!</title>
+<link rel="stylesheet" href="./login.css" />
+<script async src="./home.js"></script>
+</head>
+<body>
+ <!-- Navigation -->
+ <nav id="loginnav" class="w3-bar-login w3-black">
+</nav> 
+<nav class="w3-bar w3-black">
+  <a href="./home.html" class="w3-button w3-bar-item">Home</a>
+  <a href="./groups.html" class="w3-button w3-bar-item">Groups</a>
+</nav> 
+
+
+<form action="">
+  <h1>Post</h1>
+  <div class="container">
+    <label for="text"><b>Contents</b></label>
+    <input type="text" placeholder="Enter Contents" name="cont" required>
+
+    <button onclick="post(this.form)" type="button">Post</button>
+  </div>
+
+  <h2>My Wall</h2>
+  <div id="wall">
+    <script>myWall()</script>
+  </div>
+</form>
+</body>
+</html>
